@@ -149,7 +149,9 @@ To add the required permissions, follow these steps:
 
 1. Select **Add permissions**.
 
-1. Select **Grant admin consent for \<your tenant name\>**.
+1. Notice for the API / Permissions name **VerifiableCredential.Create.All** the status column says **Not granted for \<your tenant name\>**. Now select the API / Permissions name **VerifiableCredential.Create.All** and click  **Grant admin consent for \<your tenant name\>**. The status column should now show **Granted for \<your tenant name\>** as shown below. 
+
+   ![Screenshot that shows how the permissions look once the admin consent has been granted.](media/verifiable-credentials-configure-tenant/granted-admin-consent-app-api-permissions-verifiable-credentials.png)
 
 ## Set up Verifiable Credentials 
 
