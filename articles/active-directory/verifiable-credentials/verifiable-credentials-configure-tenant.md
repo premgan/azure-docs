@@ -45,23 +45,22 @@ Create a service principal for the Request Service API. The service API is the M
 
 To create the service principal:
 
-1. Run the following PowerShell commands. These commands install and import the `Az` module. For more information, see [Install the Azure Az PowerShell module](/powershell/azure/install-az-ps#installation).
+1. Run the following PowerShell commands. These commands install and import the `AzureAD` module. For more information, see [Install the Azure Az PowerShell module](/powershell/azure/install-az-ps#installation).
 
     ```powershell
-    if ((Get-Module -ListAvailable -Name "Az.Accounts") -eq $null) { Install-Module -Name "Az.Accounts" -Scope CurrentUser }
-    if ((Get-Module -ListAvailable -Name "Az.Resources") -eq $null) { Install-Module "Az.Resources" -Scope CurrentUser }
+    if ((Get-Module -ListAvailable -Name "AzureAD") -eq $null) {  Install-Module "AzureAD" -Scope CurrentUser }  Import-Module AzureAD
     ```
 
 1. Run the following PowerShell command to connect to your Azure AD tenant. Replace \<*your-tenant-ID*> with your [Azure AD tenant ID](../../active-directory/fundamentals/active-directory-how-to-find-tenant.md).
 
     ```powershell
-    Connect-AzAccount -TenantId <your-tenant-ID>
+    Connect-AzureAD -TenantId <your-tenant-ID>
     ```
 
 1. Run the following command in the same PowerShell session. The `AppId` `bbb94529-53a3-4be5-a069-7eaf2712b826` refers to the Verifiable Credentials Microsoft service.
 
     ```powershell
-    New-AzADServicePrincipal -ApplicationId "bbb94529-53a3-4be5-a069-7eaf2712b826" -DisplayName "Verifiable Credential Request Service" 
+    New-AzureADServicePrincipal -AppId "bbb94529-53a3-4be5-a069-7eaf2712b826" -DisplayName "Verifiable Credential Request Service" 
     ```
 
 ## Create a key vault
@@ -150,7 +149,9 @@ To add the required permissions, follow these steps:
 
 1. Select **Add permissions**.
 
-1. Select **Grant admin consent for \<your tenant name\>**.
+1. Notice for the API / Permissions name **VerifiableCredential.Create.All** the status column says **Not granted for \<your tenant name\>**. Now select the API / Permissions name **VerifiableCredential.Create.All** and click **Grant admin consent for \<your tenant name\>**. The status column should now show **Granted for \<your tenant name\>** as shown below.
+
+    ![Screenshot that shows how the permissions look once the admin consent has been granted.](https://user-images.githubusercontent.com/28261714/151245893-5b104e0f-a21d-4542-b6a7-de3c94fa5416.png)
 
 ## Set up Verifiable Credentials 
 
